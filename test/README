@@ -1,0 +1,41 @@
+
+This directory is intended for PlatformIO Test Runner and project tests.
+
+Unit Testing is a software testing method by which individual units of
+source code, sets of one or more MCU program modules together with associated
+control data, usage procedures, and operating procedures, are tested to
+determine whether they are fit for use. Unit testing finds problems early
+in the development cycle.
+
+More information about PlatformIO Unit Testing:
+- https://docs.platformio.org/en/latest/advanced/unit-testing/index.html
+
+
+// 引脚分配
+#ifndef __PIN_CONFIG_H
+#define __PIN_CONFIG_H
+
+// --- 硬件占用区  ---
+// 舵机控制 (PWM)
+#define PIN_SERVO_1   GPIO_PA0  // 左前
+#define PIN_SERVO_2   GPIO_PA1  // 右前
+#define PIN_SERVO_3   GPIO_PA2  // 左后
+#define PIN_SERVO_4   GPIO_PA3  // 右后
+#define PIN_SERVO_W   GPIO_PA6  // 尾巴
+
+// 灯光控制 (PWM/LED)
+#define PIN_LED_1     GPIO_PB0  // 呼吸灯1
+#define PIN_LED_2     GPIO_PB1  // 呼吸灯2
+
+// 通信接口 (USART)
+#define PIN_UART1_TX  GPIO_PA9  // 语音模块
+#define PIN_UART1_RX  GPIO_PA10 // 语音模块
+#define PIN_UART3_TX  GPIO_PB10 // 蓝牙模块
+#define PIN_UART3_RX  GPIO_PB11 // 蓝牙模块
+
+// --- 自由区 (可用资源) ---
+// 随便用，不会影响原有功能
+#define MY_PIN_LED    GPIO_PC13 // 板载LED，最安全的测试点
+#define MY_PIN_KEY    GPIO_PA4  // 任意闲置引脚，接按键
+
+#endif
