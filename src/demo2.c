@@ -45,3 +45,32 @@ void SU03T1_Init(void)
     // 启动接收中断(每次收1字节)
     HAL_UART_Receive_IT(&huart1,&rx_buf[rx_idx],1);
 }
+
+//================================中断入口================================
+void USART1_IRQHandler(void)
+   {
+    HAL_UART_IRQHandler(&huart1);  // HAL统一处理
+   }
+
+//================================主循环================================
+int main(void){
+    HAL_Init();
+    SystemClock_Config(); // 时钟配置函数，需用户实现
+    SU03T1_Init();
+
+    while(1){
+        if(frame_ok) {
+            frame_ok = 0; // 处理完后重置标志
+            uint8_t cmd = rx_buf[1]; // 取命令字
+
+            switch(cmd) {
+                case 0x10: Action_getdown(); break;
+                case 0x11: Action_upright(); break;
+                case 0x12: Action_advance(); break;
+                case 0x13: Action_back(); break;
+                case 0x14: Action_Lrotation(); break;
+                case 0x15: Action_Rrotation(); break;
+            }
+        }
+    }
+}
